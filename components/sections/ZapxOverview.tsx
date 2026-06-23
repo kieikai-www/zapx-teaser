@@ -1,0 +1,113 @@
+import { AnimatedSection } from "@/components/AnimatedSection";
+
+const POINTS = [
+  {
+    number: "01",
+    title: "1mm以下の精度で照射",
+    description:
+      "ジャイロスコープ式の2軸回転機構により、従来機を超える位置精度を実現。治療中もリアルタイムで位置ずれを検出・補正し、常に1mm以内の精度を維持します。",
+    icon: (
+      <svg
+        className="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <circle cx="12" cy="12" r="3" strokeWidth={1.5} />
+        <path
+          strokeLinecap="round"
+          strokeWidth={1.5}
+          d="M12 2v3M12 19v3M2 12h3M19 12h3"
+        />
+        <circle cx="12" cy="12" r="9" strokeWidth={1} strokeDasharray="2 3" />
+      </svg>
+    ),
+  },
+  {
+    number: "02",
+    title: "頭蓋骨を開かない非侵襲治療",
+    description:
+      "頭部固定用の金属ピンや金属フレームは不要。柔軟なマスクで固定するだけで治療が可能です。患者さんへの身体的負担を最小限に抑えます。",
+    icon: (
+      <svg
+        className="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+        />
+      </svg>
+    ),
+  },
+  {
+    number: "03",
+    title: "外来または1泊入院で完結",
+    description:
+      "ほとんどの症例は外来治療または1泊入院で対応可能。コバルト線源を使わないリニアック式のため治療時間が安定しており、分割照射にも柔軟に対応できます。",
+    icon: (
+      <svg
+        className="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+        />
+      </svg>
+    ),
+  },
+];
+
+export function ZapxOverview() {
+  return (
+    <section id="about" className="py-24 md:py-40 bg-zapx-navy relative">
+      <div className="section-divider absolute top-0 left-0 right-0" />
+
+      <div className="max-w-6xl mx-auto px-6">
+        <AnimatedSection className="text-center mb-20">
+          <p className="text-xs text-zapx-cyan tracking-[0.4em] uppercase mb-4">
+            What is ZAP X
+          </p>
+          <h2 className="text-3xl md:text-5xl font-black mb-6">
+            ZAP X とは？
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
+            ZAP X（ザップ エックス）は、シリコンバレー発のZAP Surgical
+            Systems社が開発した
+            最先端の定位放射線手術（SRS）システムです。
+            CyberKnifeの発明者であるスタンフォード大学の神経外科医
+            Dr. John Adlerが設立した同社の最新鋭機器です。
+          </p>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {POINTS.map((point, i) => (
+            <AnimatedSection key={point.number} delay={i * 0.15}>
+              <div className="relative p-8 rounded-xl border border-border bg-zapx-navy-mid hover:border-zapx-cyan/40 transition-colors group box-glow-cyan">
+                <div className="text-zapx-cyan mb-6 group-hover:scale-110 transition-transform">
+                  {point.icon}
+                </div>
+                <div className="text-5xl font-black text-zapx-cyan/10 absolute top-6 right-6 group-hover:text-zapx-cyan/20 transition-colors">
+                  {point.number}
+                </div>
+                <h3 className="text-xl font-bold mb-4">{point.title}</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  {point.description}
+                </p>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
