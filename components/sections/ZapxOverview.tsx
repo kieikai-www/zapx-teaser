@@ -92,7 +92,7 @@ export function ZapxOverview() {
         <div className="grid md:grid-cols-3 gap-8">
           {POINTS.map((point, i) => (
             <AnimatedSection key={point.number} delay={i * 0.15}>
-              <div className="relative p-8 rounded-xl border border-border bg-zapx-navy-mid hover:border-zapx-cyan/40 transition-colors group box-glow-cyan">
+              <div className="relative p-8 rounded-xl border border-zapx-cyan/25 bg-zapx-navy-mid card-border-animate group">
                 <div className="text-zapx-cyan mb-6 group-hover:scale-110 transition-transform">
                   {point.icon}
                 </div>

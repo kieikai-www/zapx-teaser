@@ -140,4 +140,27 @@
     background: linear-gradient(90deg, transparent, oklch(0.78 0.17 199 / 30%), transparent);
     height: 1px;
   }
+
+  .card-border-animate {
+    animation: card-border-pulse 3s ease-in-out infinite;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes card-border-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px oklch(0.78 0.17 199 / 15%), 0 0 20px oklch(0.78 0.17 199 / 6%);
+    border-color: oklch(0.78 0.17 199 / 40%);
+  }
+  50% {
+    box-shadow: 0 0 20px oklch(0.78 0.17 199 / 35%), 0 0 50px oklch(0.78 0.17 199 / 15%);
+    border-color: oklch(0.78 0.17 199 / 70%);
+  }
 }

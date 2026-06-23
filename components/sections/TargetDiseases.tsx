@@ -53,7 +53,7 @@ export function TargetDiseases() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {DISEASES.map((disease, i) => (
             <AnimatedSection key={disease.name} delay={i * 0.1}>
-              <div className="p-6 rounded-xl border border-border bg-zapx-navy-mid hover:border-zapx-cyan/40 transition-all hover:-translate-y-1 group">
+              <div className="p-6 rounded-xl border border-zapx-cyan/20 bg-zapx-navy-mid card-border-animate hover:-translate-y-1 transition-transform group">
                 <div className="text-3xl mb-4">{disease.icon}</div>
                 <h3 className="font-bold text-base mb-2 group-hover:text-zapx-cyan transition-colors">
                   {disease.name}
