@@ -1,7 +1,18 @@
+import Image from "next/image";
+
 export function FooterSection() {
   return (
-    <footer className="py-12 bg-[oklch(0.05_0.02_242)] border-t border-border">
-      <div className="max-w-6xl mx-auto px-6">
+    <footer className="relative py-12 bg-[oklch(0.05_0.02_242)] border-t border-border overflow-hidden">
+      <Image
+        src="/images/hospital-exterior.png"
+        alt=""
+        fill
+        className="object-cover object-bottom opacity-25 grayscale"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.05_0.02_242)] via-[oklch(0.05_0.02_242)/75%] to-[oklch(0.05_0.02_242)/55%]" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <p className="text-zapx-cyan font-black text-xl tracking-wider">
