@@ -1,9 +1,8 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import Image from "next/image";
-import { AnimatedSection } from "@/components/AnimatedSection";
 
 const POINTS = [
   {
@@ -13,7 +12,7 @@ const POINTS = [
       "ジャイロスコープ式の2軸回転機構により、従来機を超える位置精度を実現。治療中もリアルタイムで位置ずれを検出・補正し、常に1mm以内の精度を維持します。",
     icon: (
       <svg
-        className="w-8 h-8"
+        className="w-full h-full"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -35,7 +34,7 @@ const POINTS = [
       "頭部固定用の金属ピンや金属フレームは不要。柔軟なマスクで固定するだけで治療が可能です。患者さんへの身体的負担を最小限に抑えます。",
     icon: (
       <svg
-        className="w-8 h-8"
+        className="w-full h-full"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -56,7 +55,7 @@ const POINTS = [
       "ほとんどの症例は外来治療または1泊入院で対応可能。コバルト線源を使わないリニアック式のため治療時間が安定しており、分割照射にも柔軟に対応できます。",
     icon: (
       <svg
-        className="w-8 h-8"
+        className="w-full h-full"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -79,17 +78,22 @@ export function ZapxOverview() {
     offset: ["start start", "end end"],
   });
 
-  // Darkens in the first half of the pinned scroll, then holds at max (never brightens again)
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.08, 0.85]);
-  const textOpacity = useTransform(scrollYProgress, [0.5, 0.85], [0, 1]);
-  const textY = useTransform(scrollYProgress, [0.5, 0.85], [30, 0]);
+  // One-way latches: once tripped by scroll, never reset — immune to scroll jitter or
+  // the sticky pin releasing at the end, so the darkened state and content can't "come back".
+  const [isDark, setIsDark] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest > 0.35) setIsDark(true);
+    if (latest > 0.55) setShowContent(true);
+  });
 
   return (
     <section id="about" className="relative bg-zapx-navy">
       <div className="section-divider absolute top-0 left-0 right-0 z-20" />
 
-      {/* Stage 1: image darkens on scroll, then reveals the heading (pinned) */}
-      <div ref={pinRef} className="relative h-[200vh]">
+      {/* Fixed-length pinned scroll: image darkens to solid, then heading + cards appear and stay */}
+      <div ref={pinRef} className="relative h-[280vh]">
         <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
           <div className="absolute inset-0 grayscale">
             <Image
@@ -100,62 +104,55 @@ export function ZapxOverview() {
               sizes="100vw"
             />
           </div>
-          <motion.div
-            className="absolute inset-0 bg-zapx-navy"
-            style={{ opacity: overlayOpacity }}
+          <div
+            className="absolute inset-0 bg-zapx-navy transition-opacity duration-[1200ms] ease-out"
+            style={{ opacity: isDark ? 0.82 : 0.08 }}
           />
-          <motion.div
-            style={{ opacity: textOpacity, y: textY }}
-            className="relative z-10 text-center max-w-2xl px-6"
+
+          <div
+            className={`relative z-10 w-full max-w-6xl px-6 transition-all duration-[1200ms] ease-out ${
+              showContent
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6 pointer-events-none"
+            }`}
           >
-            <p className="text-xs text-zapx-cyan tracking-[0.4em] uppercase mb-4">
-              What is ZAP X
-            </p>
-            <h2 className="text-3xl md:text-5xl font-black mb-6">
-              ZAP X とは？
-            </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              ZAP X（ザップ エックス）は、シリコンバレー発のZAP Surgical
-              Systems社が開発した
-              最先端の定位放射線手術（SRS）システムです。
-              CyberKnifeの発明者であるスタンフォード大学の神経外科医
-              Dr. John Adlerが設立した同社の最新鋭機器です。
-            </p>
-          </motion.div>
-        </div>
-      </div>
+            <div className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
+              <p className="text-xs text-zapx-cyan tracking-[0.4em] uppercase mb-3 md:mb-4">
+                What is ZAP X
+              </p>
+              <h2 className="text-2xl md:text-5xl font-black mb-4 md:mb-6">
+                ZAP X とは？
+              </h2>
+              <p className="text-muted-foreground text-sm md:text-lg leading-relaxed">
+                ZAP X（ザップ エックス）は、シリコンバレー発のZAP Surgical
+                Systems社が開発した
+                最先端の定位放射線手術（SRS）システムです。
+                CyberKnifeの発明者であるスタンフォード大学の神経外科医
+                Dr. John Adlerが設立した同社の最新鋭機器です。
+              </p>
+            </div>
 
-      {/* Stage 2: same image continues as a static (already-dark) backdrop — cards float on it permanently */}
-      <div className="relative">
-        <div className="absolute inset-0 grayscale">
-          <Image
-            src="/images/zap-x.jpg"
-            alt=""
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-        <div className="absolute inset-0 bg-zapx-navy/85" />
-
-        <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-40">
-          <div className="grid md:grid-cols-3 gap-8">
-            {POINTS.map((point, i) => (
-              <AnimatedSection key={point.number} delay={i * 0.15}>
-                <div className="relative p-8 rounded-xl border border-zapx-cyan/25 bg-zapx-navy-mid/80 backdrop-blur-sm card-border-animate group">
-                  <div className="text-zapx-cyan mb-6 group-hover:scale-110 transition-transform">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+              {POINTS.map((point) => (
+                <div
+                  key={point.number}
+                  className="relative p-4 md:p-8 rounded-xl border border-zapx-cyan/25 bg-zapx-navy-mid/85 backdrop-blur-sm card-border-animate group"
+                >
+                  <div className="text-zapx-cyan mb-3 md:mb-6 w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform">
                     {point.icon}
                   </div>
-                  <div className="text-5xl font-black text-zapx-cyan/10 absolute top-6 right-6 group-hover:text-zapx-cyan/20 transition-colors">
+                  <div className="text-3xl md:text-5xl font-black text-zapx-cyan/10 absolute top-3 right-4 md:top-6 md:right-6 group-hover:text-zapx-cyan/20 transition-colors">
                     {point.number}
                   </div>
-                  <h3 className="text-xl font-bold mb-4">{point.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">
+                  <h3 className="text-base md:text-xl font-bold mb-2 md:mb-4">
+                    {point.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed text-xs md:text-sm hidden sm:block">
                     {point.description}
                   </p>
                 </div>
-              </AnimatedSection>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
