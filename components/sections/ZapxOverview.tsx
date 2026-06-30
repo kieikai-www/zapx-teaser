@@ -1,3 +1,8 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
 const POINTS = [
@@ -68,44 +73,90 @@ const POINTS = [
 ];
 
 export function ZapxOverview() {
+  const pinRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: pinRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Darkens in the first half of the pinned scroll, then holds at max (never brightens again)
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.08, 0.85]);
+  const textOpacity = useTransform(scrollYProgress, [0.5, 0.85], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.5, 0.85], [30, 0]);
+
   return (
-    <section id="about" className="py-24 md:py-40 bg-zapx-navy relative">
-      <div className="section-divider absolute top-0 left-0 right-0" />
+    <section id="about" className="relative bg-zapx-navy">
+      <div className="section-divider absolute top-0 left-0 right-0 z-20" />
 
-      <div className="max-w-6xl mx-auto px-6">
-        <AnimatedSection className="text-center mb-20">
-          <p className="text-xs text-zapx-cyan tracking-[0.4em] uppercase mb-4">
-            What is ZAP X
-          </p>
-          <h2 className="text-3xl md:text-5xl font-black mb-6">
-            ZAP X とは？
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-            ZAP X（ザップ エックス）は、シリコンバレー発のZAP Surgical
-            Systems社が開発した
-            最先端の定位放射線手術（SRS）システムです。
-            CyberKnifeの発明者であるスタンフォード大学の神経外科医
-            Dr. John Adlerが設立した同社の最新鋭機器です。
-          </p>
-        </AnimatedSection>
+      {/* Stage 1: image darkens on scroll, then reveals the heading (pinned) */}
+      <div ref={pinRef} className="relative h-[200vh]">
+        <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
+          <div className="absolute inset-0 grayscale">
+            <Image
+              src="/images/zap-x.jpg"
+              alt=""
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+          <motion.div
+            className="absolute inset-0 bg-zapx-navy"
+            style={{ opacity: overlayOpacity }}
+          />
+          <motion.div
+            style={{ opacity: textOpacity, y: textY }}
+            className="relative z-10 text-center max-w-2xl px-6"
+          >
+            <p className="text-xs text-zapx-cyan tracking-[0.4em] uppercase mb-4">
+              What is ZAP X
+            </p>
+            <h2 className="text-3xl md:text-5xl font-black mb-6">
+              ZAP X とは？
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              ZAP X（ザップ エックス）は、シリコンバレー発のZAP Surgical
+              Systems社が開発した
+              最先端の定位放射線手術（SRS）システムです。
+              CyberKnifeの発明者であるスタンフォード大学の神経外科医
+              Dr. John Adlerが設立した同社の最新鋭機器です。
+            </p>
+          </motion.div>
+        </div>
+      </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {POINTS.map((point, i) => (
-            <AnimatedSection key={point.number} delay={i * 0.15}>
-              <div className="relative p-8 rounded-xl border border-zapx-cyan/25 bg-zapx-navy-mid card-border-animate group">
-                <div className="text-zapx-cyan mb-6 group-hover:scale-110 transition-transform">
-                  {point.icon}
+      {/* Stage 2: same image continues as a static (already-dark) backdrop — cards float on it permanently */}
+      <div className="relative">
+        <div className="absolute inset-0 grayscale">
+          <Image
+            src="/images/zap-x.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+        <div className="absolute inset-0 bg-zapx-navy/85" />
+
+        <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-40">
+          <div className="grid md:grid-cols-3 gap-8">
+            {POINTS.map((point, i) => (
+              <AnimatedSection key={point.number} delay={i * 0.15}>
+                <div className="relative p-8 rounded-xl border border-zapx-cyan/25 bg-zapx-navy-mid/80 backdrop-blur-sm card-border-animate group">
+                  <div className="text-zapx-cyan mb-6 group-hover:scale-110 transition-transform">
+                    {point.icon}
+                  </div>
+                  <div className="text-5xl font-black text-zapx-cyan/10 absolute top-6 right-6 group-hover:text-zapx-cyan/20 transition-colors">
+                    {point.number}
+                  </div>
+                  <h3 className="text-xl font-bold mb-4">{point.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    {point.description}
+                  </p>
                 </div>
-                <div className="text-5xl font-black text-zapx-cyan/10 absolute top-6 right-6 group-hover:text-zapx-cyan/20 transition-colors">
-                  {point.number}
-                </div>
-                <h3 className="text-xl font-bold mb-4">{point.title}</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  {point.description}
-                </p>
-              </div>
-            </AnimatedSection>
-          ))}
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </div>
     </section>
