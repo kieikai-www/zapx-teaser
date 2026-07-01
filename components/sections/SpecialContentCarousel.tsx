@@ -21,6 +21,7 @@ function CardThumbnail({ item }: { item: SpecialContentItem }) {
   if (item.youtubeId) {
     const vid = extractYouTubeId(item.youtubeId);
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={`https://img.youtube.com/vi/${vid}/hqdefault.jpg`}
         alt={item.title}

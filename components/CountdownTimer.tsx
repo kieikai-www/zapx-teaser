@@ -32,8 +32,11 @@ export function CountdownTimer() {
   const [remaining, setRemaining] = useState<ReturnType<typeof calcRemaining> | null>(null);
 
   useEffect(() => {
-    setRemaining(calcRemaining());
-    const id = setInterval(() => setRemaining(calcRemaining()), 1000);
+    function tick() {
+      setRemaining(calcRemaining());
+    }
+    tick();
+    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, []);
 
