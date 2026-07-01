@@ -17,6 +17,7 @@ export type NewsItem = {
   title: string;
   date: string;
   description: string;
+  body?: string;
 };
 
 export type SpecialContentItem = {

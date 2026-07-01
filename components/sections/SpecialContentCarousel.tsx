@@ -1,7 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import {
+  Dialog,
+  DialogContent,
+} from "@/components/ui/dialog";
 import type { SpecialContentItem } from "@/lib/microcms";
 
 function extractYouTubeId(value: string): string {
@@ -42,6 +46,7 @@ function CardThumbnail({ item }: { item: SpecialContentItem }) {
 
 export function SpecialContentCarousel({ items }: { items: SpecialContentItem[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [playingItem, setPlayingItem] = useState<SpecialContentItem | null>(null);
 
   function scroll(dir: "prev" | "next") {
     const el = scrollRef.current;
@@ -99,20 +104,51 @@ export function SpecialContentCarousel({ items }: { items: SpecialContentItem[] 
                 data-card
                 className="flex-none w-[calc(33.333%-1rem)] min-w-[280px] snap-start"
               >
-                <div className="rounded-xl border border-zapx-cyan/30 overflow-hidden card-border-animate">
-                  <div className="aspect-video overflow-hidden">
+                <button
+                  onClick={() => item.youtubeId ? setPlayingItem(item) : undefined}
+                  className={`w-full text-left rounded-xl border border-zapx-cyan/30 overflow-hidden card-border-animate block ${item.youtubeId ? "cursor-pointer hover:border-zapx-cyan/60 transition-colors" : ""}`}
+                >
+                  <div className="aspect-video overflow-hidden relative">
                     <CardThumbnail item={item} />
+                    {item.youtubeId && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity">
+                        <div className="w-14 h-14 rounded-full bg-zapx-cyan/90 flex items-center justify-center">
+                          <svg className="w-6 h-6 text-zapx-navy ml-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div className="px-4 py-3 bg-zapx-navy-mid">
                     <p className="text-xs text-zapx-cyan mb-1">{item.categoryLabel}</p>
                     <p className="font-bold text-sm leading-snug">{item.title}</p>
                   </div>
-                </div>
+                </button>
               </div>
             ))}
           </div>
         )}
       </div>
+
+      <Dialog
+        open={playingItem !== null}
+        onOpenChange={(open) => { if (!open) setPlayingItem(null); }}
+      >
+        <DialogContent className="!w-[90vw] !max-w-5xl p-0 overflow-hidden" showCloseButton={true}>
+          {playingItem?.youtubeId && (
+            <div className="aspect-video w-full">
+              <iframe
+                key={playingItem.id}
+                src={`https://www.youtube-nocookie.com/embed/${extractYouTubeId(playingItem.youtubeId)}?autoplay=1`}
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
