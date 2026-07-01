@@ -29,12 +29,15 @@ function Unit({ value, label }: { value: number; label: string }) {
 }
 
 export function CountdownTimer() {
-  const [remaining, setRemaining] = useState(calcRemaining);
+  const [remaining, setRemaining] = useState<ReturnType<typeof calcRemaining> | null>(null);
 
   useEffect(() => {
+    setRemaining(calcRemaining());
     const id = setInterval(() => setRemaining(calcRemaining()), 1000);
     return () => clearInterval(id);
   }, []);
+
+  if (!remaining) return null;
 
   return (
     <div className="flex items-end gap-4 md:gap-8">

@@ -12,34 +12,42 @@ export const client = createClient({
   apiKey: process.env.MICROCMS_API_KEY,
 });
 
-export type ProgressItem = {
+export type NewsItem = {
   id: string;
   title: string;
   date: string;
   description: string;
-  completed: boolean;
 };
 
-export type ArticleItem = {
+export type SpecialContentItem = {
   id: string;
   title: string;
-  date: string;
-  content: string;
-  videoUrl?: string;
-  thumbnailUrl?: string;
-  category: "video" | "article" | "symposium";
+  categoryLabel: string;
+  youtubeId?: string;
 };
 
-export async function getProgressItems() {
-  return client.getList<ProgressItem>({
-    endpoint: "progress",
-    queries: { orders: "date", limit: 20 },
-  });
+export async function getNewsItems(): Promise<NewsItem[]> {
+  "use cache";
+  try {
+    const res = await client.getList<NewsItem>({
+      endpoint: "news",
+      queries: { orders: "-date", limit: 10 },
+    });
+    return res.contents;
+  } catch {
+    return [];
+  }
 }
 
-export async function getArticles() {
-  return client.getList<ArticleItem>({
-    endpoint: "articles",
-    queries: { orders: "-date", limit: 10 },
-  });
+export async function getSpecialContent(): Promise<SpecialContentItem[]> {
+  "use cache";
+  try {
+    const res = await client.getList<SpecialContentItem>({
+      endpoint: "special-content",
+      queries: { orders: "createdAt", limit: 20 },
+    });
+    return res.contents;
+  } catch {
+    return [];
+  }
 }

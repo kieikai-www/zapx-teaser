@@ -50,7 +50,7 @@ export function FooterSection() {
         <div className="section-divider my-8" />
 
         <p className="text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} 福岡輝栄会病院. All rights reserved.
+          © 2026 福岡輝栄会病院. All rights reserved.
         </p>
       </div>
     </footer>
