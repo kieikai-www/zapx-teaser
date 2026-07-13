@@ -25,10 +25,10 @@ export function FooterSection() {
 
           <div className="text-center">
             <p className="text-muted-foreground text-xs">
-              〒000-0000 福岡県福岡市○○区○○ X-X-X
+              〒813-0044 福岡県福岡市東区千早４丁目１４−４０
             </p>
             <p className="text-muted-foreground text-xs mt-1">
-              TEL: 000-000-0000
+              TEL: 092-681-3115
             </p>
           </div>
 
