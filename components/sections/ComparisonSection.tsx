@@ -43,13 +43,6 @@ const ROWS = [
     cyber: "安定",
     zapxBest: true,
   },
-  {
-    feature: "入院の必要性",
-    zapx: "外来 or 1泊",
-    gamma: "1〜数泊",
-    cyber: "外来 or 1泊",
-    zapxBest: false,
-  },
 ];
 
 export function ComparisonSection() {

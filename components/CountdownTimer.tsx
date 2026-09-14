@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const TARGET = new Date("2027-01-01T00:00:00+09:00");
+const TARGET = new Date("2027-02-01T00:00:00+09:00");
 
 function calcRemaining() {
   const diff = TARGET.getTime() - Date.now();

@@ -41,7 +41,7 @@ export function HeroSection() {
           variant="outline"
           className="border-zapx-cyan text-zapx-cyan text-xs tracking-widest px-4 py-1.5"
         >
-          COMING 2027.01
+          COMING 2027.02
         </Badge>
 
         <div className="space-y-2">
@@ -52,20 +52,20 @@ export function HeroSection() {
             ZAP X
           </h1>
           <p className="text-lg md:text-2xl font-light text-muted-foreground mt-2">
-            Gyroscopic Radiosurgery System
+            Gyroscopic Radiosurgery
           </p>
         </div>
 
         <p className="text-xl md:text-3xl font-medium text-foreground max-w-2xl leading-relaxed">
           脳を開かずに、
           <br className="md:hidden" />
-          <span className="text-zapx-cyan">脳腫瘍を治す。</span>
+          <span className="text-zapx-cyan">脳腫瘍を治療する。</span>
         </p>
 
         <p className="text-sm md:text-base text-muted-foreground max-w-xl leading-relaxed">
-          日本に数台しかない最先端の定位放射線手術システムが、
+          日本に数台しかない定位放射線治療装置が、
           <br />
-          2027年1月、福岡輝栄会病院に導入されます。
+          2027年2月、福岡輝栄会病院に導入されます。
         </p>
 
         <div className="flex flex-col items-center gap-3 mt-4">

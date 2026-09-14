@@ -50,9 +50,9 @@ const POINTS = [
   },
   {
     number: "03",
-    title: "外来または1泊入院で完結",
+    title: "分割照射が可能",
     description:
-      "ほとんどの症例は外来治療または1泊入院で対応可能。コバルト線源を使わないリニアック式のため治療時間が安定しており、分割照射にも柔軟に対応できます。",
+      "ズレ補正機能によって数回、数十回にわたって反復して同じ場所に照射治療ができます。これにより大きな腫瘍の治療が可能となりました。",
     icon: (
       <svg
         className="w-full h-full"
@@ -126,9 +126,9 @@ export function ZapxOverview() {
               <p className="text-muted-foreground text-sm md:text-lg leading-relaxed">
                 ZAP X（ザップ エックス）は、シリコンバレー発のZAP Surgical
                 Systems社が開発した
-                最先端の定位放射線手術（SRS）システムです。
-                CyberKnifeの発明者であるスタンフォード大学の神経外科医
-                Dr. John Adlerが設立した同社の最新鋭機器です。
+                定位放射線治療装置です。
+                サイバーナイフの発明者であるスタンフォード大学の神経外科医
+                Dr. John Adlerが設立した同社の機器です。
               </p>
             </div>
 

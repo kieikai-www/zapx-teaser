@@ -18,11 +18,11 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   title: "ZAP X 導入予定 | 福岡輝栄会病院",
   description:
-    "2027年1月、福岡輝栄会病院に日本に数台しかない最先端の放射線治療システム「ZAP X」が導入されます。頭を開かずに脳腫瘍を治療する革新的な技術。",
+    "2027年2月、福岡輝栄会病院に日本に数台しかない放射線治療装置「ZAP X」が導入されます。頭を開かずに脳腫瘍を治療する革新的な技術。",
   openGraph: {
     title: "ZAP X 導入予定 | 福岡輝栄会病院",
     description:
-      "2027年1月、日本に数台しかない最先端放射線治療「ZAP X」が福岡輝栄会病院に導入。",
+      "2027年2月、日本に数台しかない放射線治療装置「ZAP X」が福岡輝栄会病院に導入。",
     type: "website",
     locale: "ja_JP",
   },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ZAP X 導入予定 | 福岡輝栄会病院",
     description:
-      "2027年1月、日本に数台しかない最先端放射線治療「ZAP X」が福岡輝栄会病院に導入。",
+      "2027年2月、日本に数台しかない放射線治療装置「ZAP X」が福岡輝栄会病院に導入。",
   },
 };
 
