@@ -28,7 +28,6 @@ export type SpecialContentItem = {
 };
 
 export async function getNewsItems(): Promise<NewsItem[]> {
-  "use cache";
   try {
     const res = await client.getList<NewsItem>({
       endpoint: "news",
@@ -41,7 +40,6 @@ export async function getNewsItems(): Promise<NewsItem[]> {
 }
 
 export async function getSpecialContent(): Promise<SpecialContentItem[]> {
-  "use cache";
   try {
     const res = await client.getList<SpecialContentItem>({
       endpoint: "special-content",
