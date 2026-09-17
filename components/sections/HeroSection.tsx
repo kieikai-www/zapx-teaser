@@ -57,7 +57,7 @@ export function HeroSection() {
         </div>
 
         <p className="text-xl md:text-3xl font-medium text-foreground max-w-2xl leading-relaxed">
-          脳を開かずに、
+          頭を開かずに、
           <br className="md:hidden" />
           <span className="text-zapx-cyan">脳腫瘍を治療する。</span>
         </p>

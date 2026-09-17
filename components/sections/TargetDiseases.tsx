@@ -2,7 +2,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 
 const DISEASES = [
   {
-    name: "脳転移",
+    name: "転移性脳腫瘍",
     description: "肺がん・乳がん・大腸がん・腎がんなど各種がんからの脳転移",
     icon: "🧠",
   },
@@ -22,9 +22,14 @@ const DISEASES = [
     icon: "💫",
   },
   {
-    name: "グリオーマ",
+    name: "グリオーマ・悪性リンパ腫",
     description: "分割照射を組み合わせた治療アプローチが可能",
     icon: "🎯",
+  },
+  {
+    name: "三叉神経痛",
+    description: "顔面に激しい痛みを引き起こす神経疾患",
+    icon: "🔥",
   },
   {
     name: "その他の頭蓋内病変",

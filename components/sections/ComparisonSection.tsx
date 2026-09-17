@@ -4,14 +4,14 @@ const ROWS = [
   {
     feature: "頭部固定方法",
     zapx: "マスク固定（非侵襲）",
-    gamma: "金属フレーム（侵襲的）",
+    gamma: "金属フレーム（侵襲的、マスク固定機器あり）",
     cyber: "マスク固定",
     zapxBest: true,
   },
   {
     feature: "照射精度",
-    zapx: "< 1mm",
-    gamma: "< 0.5mm（単回）",
+    zapx: "< 0.2mm",
+    gamma: "< 0.1mm（単回）",
     cyber: "< 1.5mm",
     zapxBest: true,
   },
@@ -39,7 +39,7 @@ const ROWS = [
   {
     feature: "治療時間",
     zapx: "安定（線源劣化なし）",
-    gamma: "コバルト劣化で延長",
+    gamma: "コバルト劣化で延長（半減期5.27年）",
     cyber: "安定",
     zapxBest: true,
   },
@@ -59,7 +59,9 @@ export function ComparisonSection() {
             他の治療法との比較
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            ZAP X は既存の放射線手術システムを超える精度と柔軟性を提供します。
+            ZAP
+            Xは定位放射線治療汎用機とは違い頭に特化しています。TrueBeamなどの汎用機は正常脳組織が浴びる放射線量がZAP
+            Xよりも多くなります。
           </p>
         </AnimatedSection>
 
