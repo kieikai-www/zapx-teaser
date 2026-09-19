@@ -4,37 +4,30 @@ const DISEASES = [
   {
     name: "転移性脳腫瘍",
     description: "肺がん・乳がん・大腸がん・腎がんなど各種がんからの脳転移",
-    icon: "🧠",
   },
   {
     name: "髄膜腫",
     description: "脳を包む髄膜に発生する良性・悪性腫瘍",
-    icon: "🔬",
   },
   {
     name: "神経鞘腫",
     description: "聴神経腫瘍など神経に発生する腫瘍",
-    icon: "⚡",
   },
   {
     name: "脳動静脈奇形",
     description: "脳内の血管異常による疾患",
-    icon: "💫",
   },
   {
     name: "グリオーマ・悪性リンパ腫",
     description: "分割照射を組み合わせた治療アプローチが可能",
-    icon: "🎯",
   },
   {
     name: "三叉神経痛",
     description: "顔面に激しい痛みを引き起こす神経疾患",
-    icon: "🔥",
   },
   {
     name: "その他の頭蓋内病変",
     description: "頭頸部領域の腫瘍・機能的疾患など",
-    icon: "✦",
   },
 ];
 
@@ -57,13 +50,12 @@ export function TargetDiseases() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {DISEASES.map((disease, i) => (
-            <AnimatedSection key={disease.name} delay={i * 0.1}>
-              <div className="p-6 rounded-xl border border-zapx-cyan/20 bg-zapx-navy-mid card-border-animate hover:-translate-y-1 transition-transform group">
-                <div className="text-3xl mb-4">{disease.icon}</div>
-                <h3 className="font-bold text-base mb-2 group-hover:text-zapx-cyan transition-colors">
+            <AnimatedSection key={disease.name} delay={i * 0.1} className="h-full">
+              <div className="h-full min-h-[168px] md:min-h-[196px] flex flex-col justify-center p-6 md:p-8 rounded-xl border border-zapx-cyan/20 bg-zapx-navy-mid card-border-animate hover:-translate-y-1 transition-transform group">
+                <h3 className="font-bold text-xl md:text-2xl mb-3 group-hover:text-zapx-cyan transition-colors">
                   {disease.name}
                 </h3>
-                <p className="text-muted-foreground text-xs leading-relaxed">
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
                   {disease.description}
                 </p>
               </div>
