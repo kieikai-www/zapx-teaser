@@ -10,7 +10,7 @@ const ROWS = [
   },
   {
     feature: "照射精度",
-    zapx: "< 0.2mm",
+    zapx: "< 1mm",
     gamma: "< 0.1mm（単回）",
     cyber: "< 1.5mm",
     zapxBest: true,
