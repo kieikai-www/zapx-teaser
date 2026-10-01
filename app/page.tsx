@@ -7,6 +7,9 @@ import { SpecialContent } from "@/components/sections/SpecialContent";
 import { NewsletterSection } from "@/components/sections/NewsletterSection";
 import { FooterSection } from "@/components/sections/FooterSection";
 
+// microCMS の更新を最大5分で反映させる
+export const revalidate = 300;
+
 export default function Home() {
   return (
     <main>
