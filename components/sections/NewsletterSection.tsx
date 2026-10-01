@@ -56,7 +56,7 @@ export function NewsletterSection() {
             最新情報を受け取る
           </h2>
           <p className="text-muted-foreground text-lg">
-            ZAP X 導入の進捗・専門医の動画・診療開始のお知らせは
+            ZAP-X 導入の進捗・専門医の動画・診療開始のお知らせは
             SNSでお届けします。
           </p>
         </AnimatedSection>

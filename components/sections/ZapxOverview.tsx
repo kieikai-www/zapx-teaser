@@ -118,13 +118,13 @@ export function ZapxOverview() {
           >
             <div className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
               <p className="text-xs text-zapx-cyan tracking-[0.4em] uppercase mb-3 md:mb-4">
-                What is ZAP X
+                What is ZAP-X
               </p>
               <h2 className="text-2xl md:text-5xl font-black mb-4 md:mb-6">
-                ZAP X とは？
+                ZAP-X とは？
               </h2>
               <p className="text-muted-foreground text-sm md:text-lg leading-relaxed">
-                ZAP X（ザップ エックス）は、シリコンバレー発のZAP Surgical
+                ZAP-X（ザップ エックス）は、シリコンバレー発のZAP Surgical
                 Systems社が開発した
                 定位放射線治療装置です。
                 サイバーナイフの発明者であるスタンフォード大学脳神経外科医の

@@ -16,7 +16,7 @@ export function FooterSection() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <p className="text-zapx-cyan font-black text-xl tracking-wider">
-              ZAP X
+              ZAP-X
             </p>
             <p className="text-muted-foreground text-xs mt-1">
               福岡輝栄会病院

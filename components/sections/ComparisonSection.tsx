@@ -59,9 +59,7 @@ export function ComparisonSection() {
             他の治療法との比較
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            ZAP
-            Xは定位放射線治療汎用機とは違い頭に特化しています。TrueBeamなどの汎用機は正常脳組織が浴びる放射線量がZAP
-            Xよりも多くなります。
+            ZAP-Xは定位放射線治療汎用機とは違い頭に特化しています。TrueBeamなどの汎用機は正常脳組織が浴びる放射線量がZAP-Xよりも多くなります。
           </p>
         </AnimatedSection>
 
@@ -76,7 +74,7 @@ export function ComparisonSection() {
                   <th className="p-4 bg-zapx-cyan/5 border-x border-zapx-cyan/20">
                     <div className="flex flex-col items-center gap-1">
                       <span className="text-zapx-cyan font-black text-base">
-                        ZAP X
+                        ZAP-X
                       </span>
                       <span className="text-xs text-zapx-cyan/60">
                         当院導入予定

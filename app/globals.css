@@ -47,7 +47,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* ZAP X brand colors */
+  /* ZAP-X brand colors */
   --color-zapx-cyan: oklch(0.78 0.17 199);
   --color-zapx-cyan-dim: oklch(0.55 0.12 199);
   --color-zapx-navy: oklch(0.08 0.025 242);
@@ -103,7 +103,7 @@
   }
 }
 
-/* ZAP X custom utilities */
+/* ZAP-X custom utilities */
 @layer utilities {
   .text-zapx-cyan {
     color: var(--color-zapx-cyan);

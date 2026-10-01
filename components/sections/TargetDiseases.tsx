@@ -43,7 +43,7 @@ export function TargetDiseases() {
           </p>
           <h2 className="text-3xl md:text-5xl font-black mb-6">対象疾患</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            ZAP X は脳・頭頸部の広範な疾患に対応可能です。
+            ZAP-X は脳・頭頸部の広範な疾患に対応可能です。
             担当医にご相談ください。
           </p>
         </AnimatedSection>

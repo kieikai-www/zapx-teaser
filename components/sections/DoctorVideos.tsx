@@ -6,14 +6,14 @@ const DOCTORS = [
     name: "医師名 A",
     title: "脳神経外科 部長",
     comment:
-      "ZAP X は精度・安全性ともに現在の放射線手術の中で最も優れたシステムです。患者さんへの負担を最小限に抑えながら、最大の治療効果を提供できると確信しています。",
+      "ZAP-X は精度・安全性ともに現在の放射線手術の中で最も優れたシステムです。患者さんへの負担を最小限に抑えながら、最大の治療効果を提供できると確信しています。",
     videoId: null, // YouTube video ID — populated when available
   },
   {
     name: "医師名 B",
     title: "放射線科 科長",
     comment:
-      "非侵襲的な治療が可能になることで、従来は手術リスクが高かった患者さんにも治療の選択肢が広がります。ZAP X の導入により、より多くの方々に最適な治療を届けられます。",
+      "非侵襲的な治療が可能になることで、従来は手術リスクが高かった患者さんにも治療の選択肢が広がります。ZAP-X の導入により、より多くの方々に最適な治療を届けられます。",
     videoId: null,
   },
 ];
@@ -57,7 +57,7 @@ export function DoctorVideos() {
           </p>
           <h2 className="text-3xl md:text-5xl font-black mb-6">専門医の声</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            ZAP X 担当医師が、この治療法の可能性について詳しく解説します。
+            ZAP-X 担当医師が、この治療法の可能性について詳しく解説します。
           </p>
         </AnimatedSection>
 

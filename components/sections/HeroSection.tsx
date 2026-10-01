@@ -9,7 +9,7 @@ export function HeroSection() {
         <iframe
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full border-0"
           src="https://www.youtube-nocookie.com/embed/_Ty1WzimIIM?autoplay=1&mute=1&loop=1&playlist=_Ty1WzimIIM&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1"
-          title="ZAP X"
+          title="ZAP-X"
           allow="autoplay; encrypted-media"
         />
       </div>
@@ -49,7 +49,7 @@ export function HeroSection() {
             福岡輝栄会病院
           </p>
           <h1 className="text-7xl md:text-9xl font-black tracking-tight gradient-text-cyan">
-            ZAP X
+            ZAP-X
           </h1>
           <p className="text-lg md:text-2xl font-light text-muted-foreground mt-2">
             Gyroscopic Radiosurgery
