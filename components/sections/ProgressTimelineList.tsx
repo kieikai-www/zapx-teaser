@@ -40,8 +40,8 @@ export function ProgressTimelineList({ items }: { items: NewsItem[] }) {
                     d="M12 7v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <span className="text-[9px] text-muted-foreground leading-tight text-center px-1">
-                  {item.date.replace("年", "\n")}
+                <span className="text-[9px] text-muted-foreground leading-tight text-center whitespace-pre-line">
+                  {item.date.replace("年", "年\n")}
                 </span>
               </div>
 
