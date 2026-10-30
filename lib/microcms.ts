@@ -27,15 +27,40 @@ export type SpecialContentItem = {
   youtubeId?: string;
 };
 
+// date は「2026年8月2日」形式のテキストなので、API の文字列ソートではなく数値で並べ替える
+function dateValue(date: string): number {
+  const m = date.match(/(\d+)年(\d+)月(\d+)日/);
+  return m ? Number(m[1]) * 10000 + Number(m[2]) * 100 + Number(m[3]) : 0;
+}
+
 export async function getNewsItems(): Promise<NewsItem[]> {
   try {
     const res = await client.getList<NewsItem>({
       endpoint: "news",
-      queries: { orders: "-date", limit: 10 },
+      queries: { limit: 100 },
     });
-    return res.contents;
+    return res.contents
+      .sort((a, b) => dateValue(b.date) - dateValue(a.date))
+      .slice(0, 10);
   } catch {
     return [];
+  }
+}
+
+// microCMS の「画面プレビュー」から下書きを取得する
+export async function getNewsDraft(
+  contentId: string,
+  draftKey: string
+): Promise<NewsItem | null> {
+  try {
+    return await client.get<NewsItem>({
+      endpoint: "news",
+      contentId,
+      queries: { draftKey },
+      customRequestInit: { cache: "no-store" },
+    });
+  } catch {
+    return null;
   }
 }
 

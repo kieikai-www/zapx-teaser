@@ -68,7 +68,7 @@ export function ProgressTimelineList({ items }: { items: NewsItem[] }) {
         open={selected !== null}
         onOpenChange={(open) => { if (!open) setSelected(null); }}
       >
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-2xl max-h-[80vh] overflow-y-auto">
           {selected && (
             <>
               <DialogHeader>
@@ -80,7 +80,7 @@ export function ProgressTimelineList({ items }: { items: NewsItem[] }) {
 
               {selected.body ? (
                 <div
-                  className="prose prose-sm prose-invert max-w-none text-sm leading-relaxed [&_p]:mb-3 [&_h2]:text-base [&_h2]:font-bold [&_h2]:mb-2 [&_ul]:list-disc [&_ul]:pl-4 [&_li]:mb-1 [&_a]:text-zapx-cyan [&_a]:underline"
+                  className="prose prose-sm prose-invert max-w-none text-sm leading-relaxed [&_p]:mb-3 [&_h2]:text-base [&_h2]:font-bold [&_h2]:mb-2 [&_ul]:list-disc [&_ul]:pl-4 [&_li]:mb-1 [&_a]:text-zapx-cyan [&_a]:underline [&_img]:w-full [&_img]:h-auto [&_img]:my-4 [&_img]:rounded-lg"
                   dangerouslySetInnerHTML={{ __html: selected.body }}
                 />
               ) : (
