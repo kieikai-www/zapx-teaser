@@ -27,10 +27,24 @@ export type SpecialContentItem = {
   youtubeId?: string;
 };
 
-// date は「2026年8月2日」形式のテキストなので、API の文字列ソートではなく数値で並べ替える
+// date は担当者が手入力するテキスト。「2026年8月2日」のほか 20260802・2026/8/2・2026-08-02・全角数字も受け付け、
+// 表示は「2026年8月2日」に揃え、並べ替えは API の文字列ソートではなく数値で行う
+function parseDate(date: string): { y: number; m: number; d: number } | null {
+  const s = date.normalize("NFKC").trim();
+  const m =
+    s.match(/^(\d{4})(\d{2})(\d{2})$/) ??
+    s.match(/(\d{4})\s*[年/.\-]\s*(\d{1,2})\s*[月/.\-]\s*(\d{1,2})/);
+  return m ? { y: Number(m[1]), m: Number(m[2]), d: Number(m[3]) } : null;
+}
+
 function dateValue(date: string): number {
-  const m = date.match(/(\d+)年(\d+)月(\d+)日/);
-  return m ? Number(m[1]) * 10000 + Number(m[2]) * 100 + Number(m[3]) : 0;
+  const p = parseDate(date);
+  return p ? p.y * 10000 + p.m * 100 + p.d : 0;
+}
+
+function normalizeNews(item: NewsItem): NewsItem {
+  const p = parseDate(item.date);
+  return p ? { ...item, date: `${p.y}年${p.m}月${p.d}日` } : item;
 }
 
 export async function getNewsItems(): Promise<NewsItem[]> {
@@ -40,6 +54,7 @@ export async function getNewsItems(): Promise<NewsItem[]> {
       queries: { limit: 100 },
     });
     return res.contents
+      .map(normalizeNews)
       .sort((a, b) => dateValue(b.date) - dateValue(a.date))
       .slice(0, 10);
   } catch {
@@ -53,12 +68,13 @@ export async function getNewsDraft(
   draftKey: string
 ): Promise<NewsItem | null> {
   try {
-    return await client.get<NewsItem>({
+    const item = await client.get<NewsItem>({
       endpoint: "news",
       contentId,
       queries: { draftKey },
       customRequestInit: { cache: "no-store" },
     });
+    return normalizeNews(item);
   } catch {
     return null;
   }
