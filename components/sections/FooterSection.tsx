@@ -14,11 +14,15 @@ export function FooterSection() {
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-center md:text-left">
-            <p className="text-zapx-cyan font-black text-xl tracking-wider">
-              ZAP-X
-            </p>
-            <p className="text-muted-foreground text-xs mt-1">
+          <div className="flex flex-col items-center md:items-start">
+            <Image
+              src="/images/logo/logo-dark.png"
+              alt="FUKUOKA ZAP-X NEXUS 輝栄会定位放射線治療センター"
+              width={1835}
+              height={520}
+              className="w-56 h-auto"
+            />
+            <p className="text-muted-foreground text-xs mt-2">
               福岡輝栄会病院
             </p>
           </div>

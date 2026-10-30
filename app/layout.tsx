@@ -16,21 +16,21 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "ZAP-X 導入予定 | 福岡輝栄会病院",
+  title: "FUKUOKA ZAP-X NEXUS | 輝栄会定位放射線治療センター",
   description:
-    "2027年2月、福岡輝栄会病院に日本に数台しかない放射線治療装置「ZAP-X」が導入されます。頭を開かずに脳腫瘍を治療する革新的な技術。",
+    "2027年2月、福岡輝栄会病院「輝栄会定位放射線治療センター（FUKUOKA ZAP-X NEXUS）」に、日本に数台しかない放射線治療装置「ZAP-X」が導入されます。頭を開かずに脳腫瘍を治療する革新的な技術。",
   openGraph: {
-    title: "ZAP-X 導入予定 | 福岡輝栄会病院",
+    title: "FUKUOKA ZAP-X NEXUS | 輝栄会定位放射線治療センター",
     description:
-      "2027年2月、日本に数台しかない放射線治療装置「ZAP-X」が福岡輝栄会病院に導入。",
+      "2027年2月、日本に数台しかない放射線治療装置「ZAP-X」を備えた輝栄会定位放射線治療センターが開設。",
     type: "website",
     locale: "ja_JP",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ZAP-X 導入予定 | 福岡輝栄会病院",
+    title: "FUKUOKA ZAP-X NEXUS | 輝栄会定位放射線治療センター",
     description:
-      "2027年2月、日本に数台しかない放射線治療装置「ZAP-X」が福岡輝栄会病院に導入。",
+      "2027年2月、日本に数台しかない放射線治療装置「ZAP-X」を備えた輝栄会定位放射線治療センターが開設。",
   },
 };
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { Badge } from "@/components/ui/badge";
 
@@ -44,14 +45,21 @@ export function HeroSection() {
           COMING 2027.02
         </Badge>
 
-        <div className="space-y-2">
+        <div className="space-y-4">
           <p className="text-sm md:text-base text-muted-foreground tracking-[0.3em] uppercase">
             福岡輝栄会病院
           </p>
-          <h1 className="text-7xl md:text-9xl font-black tracking-tight gradient-text-cyan">
-            ZAP-X
+          <h1>
+            <Image
+              src="/images/logo/logo-dark.png"
+              alt="FUKUOKA ZAP-X NEXUS 輝栄会定位放射線治療センター"
+              width={1835}
+              height={520}
+              preload
+              className="w-[min(88vw,640px)] h-auto"
+            />
           </h1>
-          <p className="text-lg md:text-2xl font-light text-muted-foreground mt-2">
+          <p className="text-lg md:text-2xl font-light text-muted-foreground">
             Gyroscopic Radiosurgery
           </p>
         </div>
