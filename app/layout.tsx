@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_JP } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,6 +17,8 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://zapx-teaser.kieikai.or.jp"),
+  alternates: { canonical: "/" },
   title: "FUKUOKA ZAP-X NEXUS | 輝栄会定位放射線治療センター",
   description:
     "2027年2月、福岡輝栄会病院「輝栄会定位放射線治療センター（FUKUOKA ZAP-X NEXUS）」に、日本に数台しかない放射線治療装置「ZAP-X」が導入されます。頭を開かずに脳腫瘍を治療する革新的な技術。",
@@ -47,6 +50,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
       </body>
+      {/* 開発中のアクセスは計測しない */}
+      {process.env.NODE_ENV === "production" && (
+        <GoogleAnalytics gaId="G-HY075NWHCW" />
+      )}
     </html>
   );
 }
